@@ -1,18 +1,15 @@
 import { React, useState } from 'react'
+import App from '../App';
+import RocketShipModal from './RocketShipModal';
+import styles from '../App.css';
 
 const DinoBucks = (props) => {
     const [DinoCounter, setCounter] = useState(0);
- 
+    const [isOpen, setIsOpen] = useState(false);
+
   //increase counter
     const increase = () => {
     setCounter(DinoBuckCount => DinoBuckCount + 1);
-
-    // let purchase;
-    // if (DinoCounter >= 50) {
-    //     purchase = <h3>Would you life to purchase a rocket ship?</h3>
-    //   } else {
-    //     purchase = <h3>There is nothing you can afford. </h3>
-    //   }
 
   }; 
     return (
@@ -25,8 +22,13 @@ const DinoBucks = (props) => {
             </div>
             <div className="purchaseOptions">
                 {DinoCounter >= 50 && 
-                    <h3>Would you like to purchase a rocket ship?</h3>
-                    // <button className="buyShip">Buy Ship</button>
+                    <div className ="SampleModal">
+                      <h3>You Have Enough Money to Go Shopping!</h3>
+                      <button className={styles.primaryBtn} onClick={() => setIsOpen(true)}>
+                          Go Shopping
+                      </button>
+                        {isOpen && <RocketShipModal setIsOpen={setIsOpen} />}
+      </div>
                 }
             </div>
         </div>
